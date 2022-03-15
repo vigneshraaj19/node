@@ -26,6 +26,13 @@ const client = await createConnection();
 
 //cursor - pagination->convert to array(toarray)
 //moree than 20 data we use this(toArray)
+app.get("/",  function (req,res){
+
+    const movies = "hello vignesh🙄";
+    res.send(movies);
+    
+});
+
 app.get("/movies", async function (req,res){
 
     const movies = await client
