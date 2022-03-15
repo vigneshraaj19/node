@@ -4,7 +4,7 @@ import express from "express";
 import { MongoClient } from "mongodb";
 //const express=require("express");
 dotenv.config();
-
+console.log("welcometo react app");
 console.log(process.env.MONGO_URL);
 const app=express();
 const PORT=process.env.PORT;
