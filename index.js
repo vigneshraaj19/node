@@ -4,7 +4,6 @@ import express from "express";
 import { MongoClient } from "mongodb";
 //const express=require("express");
 dotenv.config();
-
 console.log(process.env.MONGO_URL);
 const app=express();
 const PORT=process.env.PORT;
@@ -19,7 +18,7 @@ async function createConnection()
 {
     const client = new MongoClient(MONGO_URL);
     await client.connect();
-    console.log("Mongo is connected ✌️😊");
+    console.log("Mongo is connected machi✌️😊");
     return client;
 }
 const client = await createConnection();
@@ -28,7 +27,7 @@ const client = await createConnection();
 //moree than 20 data we use this(toArray)
 app.get("/",  function (req,res){
 
-    const movies = "hello vignesh🙄";
+    const movies = "hello vignesh machi..🙄";
     res.send(movies);
     
 });
