@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
-import { engine } from "express/lib/application";
 //const express=require("express");
 dotenv.config();
 console.log(process.env.MONGO_URL);
