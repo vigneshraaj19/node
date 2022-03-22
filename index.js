@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
-import bcrypt from "bcrypt";
 //const express=require("express");
 dotenv.config();
 console.log(process.env.MONGO_URL);
@@ -90,11 +89,5 @@ app.delete("/movies/:id", async function (request, response) {
 
 
   app.listen(PORT,() => console.log("server is just started"));
-  async function genPassword(password)
-  {
-      const salt=await bcrypt.genSalt(10);
-      const hashPassword=await bcrypt.hash(password,salt);
-      console.log({salt,hashPassword});
-  }
-  genPassword("password@123");
+ 
  
