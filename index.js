@@ -3,8 +3,9 @@ import dotenv from "dotenv";
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
+import { getMovieById,createMovieById,updateMovieById,deleteMovieById,getAllMovies } from "./helper.js";
 //const express=require("express");
-dotenv.config();
+dotenv. config();
 console.log(process.env.MONGO_URL);
 const app=express();
 const PORT=process.env.PORT;
@@ -24,7 +25,7 @@ async function createConnection()
     console.log("Mongo is connected machi✌️😊");
     return client;
 }
-const client = await createConnection();
+export const client = await createConnection();
 
 //cursor - pagination->convert to array(toarray)
 //moree than 20 data we use this(toArray)
@@ -35,8 +36,7 @@ app.get("/",  function (req,res){
 
 
 app.get("/movies", async function (req,res){
-    const movies = await client
-    .db("b30wd") .collection("movies") .find({}).toArray(); 
+    const movies = await getAllMovies(); 
     res.send(movies);  
 });
 
@@ -50,8 +50,7 @@ app.get("/movies/:id", async function (request, response) {
     const { id } = request.params;
     //const movie = movies.find((mv) => mv.id === id);
    // const movie = movies.find((item) => item.id ===id);
-   const movie = await client
-   .db("b30wd") .collection("movies") .findOne({id:id}); 
+   const movie = await getMovieById(id); 
    //condition if mentioned id is not there
    movie? response.send(movie): response.status(404)
    .send({ message: "No such movie found 😅" });
@@ -63,8 +62,7 @@ app.post("/movies",async function (req,res){
     const data=req.body;  
     console.log(data);
     //middle ware ->intercept ->converting body to json we use app.use
-    const result = await client
-    .db("b30wd") .collection("movies") .insertMany(data); 
+    const result = await createMovieById(data); 
     res.send(result);
 });
 
@@ -72,8 +70,7 @@ app.post("/movies",async function (req,res){
 app.delete("/movies/:id", async function (request, response) {
     console.log(request.params);
     const { id } = request.params;
-   const result = await client
-   .db("b30wd") .collection("movies") .deleteOne({id:id}); 
+   const result = await deleteMovieById(id); 
    response.send(result);
   });
  
@@ -82,12 +79,12 @@ app.delete("/movies/:id", async function (request, response) {
     console.log(request.params);
     const updatedata=request.body; 
     const { id } = request.params;
-   const result = await client
-   .db("b30wd") .collection("movies") .updateOne({id:id},{ $set: updatedata }); 
+   const result = await updateMovieById(id, updatedata); 
    response.send(result);
   });
 
 
   app.listen(PORT,() => console.log("server is just started"));
  
- 
+
+
