@@ -33,7 +33,7 @@ app.get("/",  function (req,res){
     const movies = "hello vignesh machi..🙄";
     res.send(movies);   
 });
-app.use('/movies',moviesRouter);
+app.use('/movies', moviesRouter);
 
   app.listen(PORT,() => console.log("server is just started"));
  
