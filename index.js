@@ -10,7 +10,7 @@ const app=express();
 const PORT=process.env.PORT;
 //middle ware ->intercept ->converting body to json
 app.use(express.json());
-//it allows api to access to other url.
+//it allows api to access to other url.ok fine
 //eg google api
 app.use(cors());
 //connecting nodeJS and mongoDB
