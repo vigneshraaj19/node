@@ -9,6 +9,10 @@ export async function createMovieById(data) {
     return await client
         .db("b30wd").collection("movies").insertMany(data);
 }
+export async function createUser(data) {
+    return await client
+        .db("b30wd").collection("users").insertOne(data);
+}
 
 export async function updateMovieById(id, updatedata) {
     return await client
