@@ -2,8 +2,10 @@
 import dotenv from "dotenv";
 import express from "express";
 import { MongoClient } from "mongodb";
-import cors from "cors";
-import {moviesRouter} from "./routes/movies.js"
+import cors from "cors"; 
+import bcrypt from "bcrypt";
+import {moviesRouter} from "./routes/movies.js";
+import {usersRouter} from "./routes/users.js"
 //const express=require("express");
 dotenv.config();
 console.log(process.env.MONGO_URL);
@@ -33,9 +35,11 @@ app.get("/",  function (req,res){
     const movies = "hello vignesh machi..🙄";
     res.send(movies);   
 });
-app.use('/movies', moviesRouter);
+
 
   app.listen(PORT,() => console.log("server is just started"));
  
 
-
+genPassword("password@123");
+app.use('/movies', moviesRouter);
+app.use('/users', usersRouter);
