@@ -40,6 +40,6 @@ app.get("/",  function (req,res){
   app.listen(PORT,() => console.log("server is just started"));
  
 
-genPassword("password@123");
+
 app.use('/movies', moviesRouter);
 app.use('/users', usersRouter);

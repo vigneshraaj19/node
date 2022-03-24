@@ -5,6 +5,11 @@ export async function getMovieById(id) {
         .db("b30wd").collection("movies").findOne({ id: id });
 }
 
+export async function getUserByName(username) {
+    return await client
+        .db("b30wd").collection("users").findOne({ username:username });
+}
+
 export async function createMovieById(data) {
     return await client
         .db("b30wd").collection("movies").insertMany(data);
